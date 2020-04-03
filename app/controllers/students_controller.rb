@@ -12,6 +12,10 @@ class StudentsController < ApplicationController
   end
 
   def create
+    # cannot use mass assignment (Student.create(params)) here or else will give ForbiddenAttributesError
+    @student = Student.create!(first_name: params[:first_name], last_name: params[:last_name])
+
+    redirect_to student_path(@student)
   end
 
 end
